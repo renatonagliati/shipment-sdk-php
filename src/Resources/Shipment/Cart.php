@@ -4,8 +4,8 @@ namespace MelhorEnvio\Resources\Shipment;
 
 use GuzzleHttp\Exception\ClientException;
 use InvalidArgumentException;
-use MelhorEnvio\Exceptions\CalculatorException;
-use MelhorEnvio\Exceptions\InvalidCalculatorPayloadException;
+use MelhorEnvio\Exceptions\CartException;
+use MelhorEnvio\Exceptions\InvalidCartPayloadException;
 use MelhorEnvio\Exceptions\InvalidResourceException;
 use MelhorEnvio\Exceptions\InvalidVolumeException;
 use MelhorEnvio\Resources\Shipment\Package;
@@ -179,11 +179,11 @@ class Cart
     protected function validatePayload(): void
     {
         if (empty($this->payload['from']['postal_code']) || empty($this->payload['to']['postal_code'])) {
-            throw new InvalidCalculatorPayloadException('The CEP is invalid.');
+            throw new InvalidCartPayloadException('The CEP is invalid.');
         }
 
         if (empty($this->payload['volumes']) && empty($this->payload['products'])) {
-            throw new InvalidCalculatorPayloadException('There are no defined products or volumes.');
+            throw new InvalidCartPayloadException('There are no defined products or volumes.');
         }
     }
 
@@ -193,7 +193,7 @@ class Cart
     }
 
     /**
-     * @throws InvalidCalculatorPayloadException|CalculatorException
+     * @throws InvalidCartPayloadException|CartException
      */
     public function close()
     {
