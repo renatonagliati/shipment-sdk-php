@@ -7,6 +7,7 @@ use MelhorEnvio\Resources\Shipment\Calculator;
 use MelhorEnvio\Resources\Shipment\Cart;
 use MelhorEnvio\Resources\Shipment\Checkout;
 use MelhorEnvio\Resources\Shipment\Generate;
+use MelhorEnvio\Resources\Shipment\Orders;
 use MelhorEnvio\Resources\Shipment\ToPrint;
 
 class Shipment extends Base
@@ -34,5 +35,10 @@ class Shipment extends Base
     public function toPrint(): ToPrint
     {
         return new ToPrint($this);
+    }
+
+    public function orders(): Orders
+    {
+        return new Orders($this);
     }
 }
